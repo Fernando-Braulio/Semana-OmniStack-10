@@ -2,6 +2,7 @@ import React from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
+import './Main.css';
 
 //Componente: bloco isolado de html, css e js no qual nao intefere no restante da aplicação
 //Propriedade: Imformações que um componente PAI passa pra o componente FILHO
@@ -38,9 +39,54 @@ function App() {
           <button type="submit">Salvar</button>
         </form>
       </aside>
-      
-      <main>
 
+      <main>
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <div className="user-info">
+                <strong>Fernando Bráulio</strong>
+                <span>React JS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
+            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <div className="user-info">
+                <strong>Fernando Bráulio</strong>
+                <span>React JS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
+            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <div className="user-info">
+                <strong>Fernando Bráulio</strong>
+                <span>React JS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
+            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
+          </li>
+          <li className="dev-item">
+            <header>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <div className="user-info">
+                <strong>Fernando Bráulio</strong>
+                <span>React JS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
+            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
+          </li>
+        </ul>
       </main>
     </div>
   );
