@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
@@ -9,6 +9,26 @@ import './Main.css';
 //Estado: Informações mantidas pelo componente (Lembrar: imutabilidade)
 
 function App() {
+  let [latitude, setLatitude] = useState('');
+  let [longitude, setLongitude] = useState('');
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let { latitude, longitude } = position.coords;
+
+        setLatitude(latitude);
+        setLongitude(longitude);
+      },
+      (err) => {
+        console.log(err);
+      },
+      {
+        timeout: 30000,
+      }
+    );
+  }, []);
+
   return (
     <div id="app">
       <aside>
@@ -16,23 +36,23 @@ function App() {
         <form>
           <div className="input-block">
             <label htmlFor="github_username">Usuário do GitHub</label>
-            <input name="github_username" id="github_username" required/>  
+            <input name="github_username" id="github_username" required />
           </div>
 
           <div className="input-block">
             <label htmlFor="techs">Tecnologia</label>
-            <input name="techs" id="techs" required/>
+            <input name="techs" id="techs" required />
           </div>
 
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input name="latitude" id="latitude" required/>
+              <input type="number" name="latitude" id="latitude" required value={latitude} onChange={e => setLatitude(e.target.value)} />
             </div>
-            
+
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
-              <input name="longitude" id="longitude" required/>
+              <input type="number" name="longitude" id="longitude" required value={longitude} onChange={e => setLongitude(e.target.value)} />
             </div>
           </div>
 
@@ -44,9 +64,9 @@ function App() {
         <ul>
           <li className="dev-item">
             <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
               <div className="user-info">
-                <strong>Fernando Bráulio</strong>
+                <strong>Diego Fernandes</strong>
                 <span>React JS, React Native, Node.js</span>
               </div>
             </header>
@@ -55,9 +75,9 @@ function App() {
           </li>
           <li className="dev-item">
             <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
               <div className="user-info">
-                <strong>Fernando Bráulio</strong>
+                <strong>Diego Fernandes</strong>
                 <span>React JS, React Native, Node.js</span>
               </div>
             </header>
@@ -66,9 +86,9 @@ function App() {
           </li>
           <li className="dev-item">
             <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
               <div className="user-info">
-                <strong>Fernando Bráulio</strong>
+                <strong>Diego Fernandes</strong>
                 <span>React JS, React Native, Node.js</span>
               </div>
             </header>
@@ -77,9 +97,9 @@ function App() {
           </li>
           <li className="dev-item">
             <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Fernando Bráulio"/>
+              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
               <div className="user-info">
-                <strong>Fernando Bráulio</strong>
+                <strong>Diego Fernandes</strong>
                 <span>React JS, React Native, Node.js</span>
               </div>
             </header>
