@@ -10,6 +10,8 @@ import './Main.css';
 //Estado: Informações mantidas pelo componente (Lembrar: imutabilidade)
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   let [latitude, setLatitude] = useState('');
   let [longitude, setLongitude] = useState('');
   let [github_username, setGithubUsername] = useState('');
@@ -32,10 +34,20 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    async function loadDevs(){
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleAddDev(e) {
     e.preventDefault();
 
-    const response = await api.post('/users', {
+    const response = await api.post('/devs', {
       github_username,
       techs,
       latitude,
@@ -44,6 +56,8 @@ function App() {
 
     setGithubUsername('');
     setTechs('');
+
+    setDevs([...devs, response.data]);
   }
 
   return (
@@ -79,50 +93,19 @@ function App() {
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>React JS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>React JS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>React JS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://jornaldoempreendedor.com.br/wp-content/uploads/2014/08/pessoa-autentica.jpg" alt="Diego Fernandes" />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>React JS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/Fernando-Braulio">Acessar perfil no GitHub</a>
-          </li>
+          {devs.map(dev => (
+            <li key={dev._id} className="dev-item">
+              <header>
+                <img src={dev.avatar_url} alt={dev.name} />
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(', ')}</span>
+                </div>
+              </header>
+              <p>{dev.bio}</p>
+              <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no GitHub</a>
+            </li>
+          ))}
         </ul>
       </main>
     </div>
